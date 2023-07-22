@@ -11,8 +11,8 @@ let SSML = `<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml
 </voice>
 </speak>`;
 
-const key = process.env.AZURE_KEY;
-const region = process.env.AZURE_REGION;
+const key = 'e77190fafa854380bc05aa3b6ebeb52a';
+const region = 'eastus2';
         
 /**
  * Node.js server code to convert text to speech
