@@ -9,7 +9,7 @@ var indexRouter = require('./routes/index');
 
 var app = express();
 
-
+const axios = require('axios');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -35,6 +35,7 @@ app.use(function(req, res, next) {
 var cron = require('node-cron');
 const findRemoveSync = require('find-remove')
 
+
 cron.schedule('0 * * * *', () => {
   var result = findRemoveSync(path.join(__dirname,'/public'), {
     age: { seconds: 3600 },
@@ -43,6 +44,28 @@ cron.schedule('0 * * * *', () => {
   console.log("result :" + result)
 });
 
+async function callYourselfToMaintainServerRunning() {
+  let config = {
+    method: 'get',
+    maxBodyLength: Infinity,
+    url: 'https://talking-avatar.onrender.com/',
+    headers: { }
+  };
+
+  axios.request(config)
+  .then((response) => {
+    console.log(JSON.stringify(response.data));
+    console.log('Hello Motherfucker... the time is '+ new Date())
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+
+}
+
+cron.schedule("* * * * *", function() {
+  callYourselfToMaintainServerRunning()
+});
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
