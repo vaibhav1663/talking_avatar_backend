@@ -11,10 +11,12 @@
     "debug": "~2.6.9",
     "dotenv": "^16.0.3",
     "express": "~4.16.1",
+    "find-remove": "^4.1.0",
     "http-errors": "~1.6.3",
     "lodash": "^4.17.21",
     "microsoft-cognitiveservices-speech-sdk": "^1.23.0",
     "morgan": "~1.9.1",
+    "node-cron": "^3.0.2",
     "pug": "2.0.0-beta11",
     "update": "^0.7.4"
   }

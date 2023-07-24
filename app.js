@@ -10,6 +10,7 @@ var indexRouter = require('./routes/index');
 var app = express();
 
 
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -29,6 +30,17 @@ app.use('/', indexRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
+});
+
+var cron = require('node-cron');
+const findRemoveSync = require('find-remove')
+
+cron.schedule('0 * * * *', () => {
+  var result = findRemoveSync(path.join(__dirname,'/public'), {
+    age: { seconds: 3600 },
+    extensions: '.mp3'
+  })
+  console.log("result :" + result)
 });
 
 // error handler
